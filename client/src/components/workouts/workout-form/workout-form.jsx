@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import ExerciseInput from "./exercise-input/exercise-input";
 import "./workout-form.scss";
 
-const WorkoutForm = ({ handleWorkouts }) => {
+const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
   //set form states
   const [formValues, setFormValues] = useState({
     date: new Date()
@@ -12,11 +12,37 @@ const WorkoutForm = ({ handleWorkouts }) => {
       .replace(/-/g, "/"),
     workoutFocus: "",
     id: uuid(),
-    core: false,
-    exercises: [{ name: "", repsOrTime: "", sets: 1 }],
+    core: null,
+    exercises: [{ name: "", repsOrTime: "", sets: "1" }],
     notes: ""
   });
 
+  useEffect(() => {
+    if (workoutToEdit.id) {
+      console.log(workoutToEdit);
+      const { date, id, workoutFocus, core, exercises, notes } = workoutToEdit;
+      setFormValues({
+        ...formValues,
+        date,
+        id,
+        workoutFocus,
+        core,
+        exercises,
+        notes
+      });
+    }
+  }, [workoutToEdit]);
+  //reset form
+  const resetForm = event => {
+    setFormValues({
+      ...formValues,
+      id: uuid(),
+      workoutFocus: "",
+      core: null,
+      exercises: [{ name: "", repsOrTime: "", sets: "1" }],
+      notes: ""
+    });
+  };
   //handle change
   const handleChange = event => {
     const { className, value, name, dataset } = event.target;
@@ -31,7 +57,7 @@ const WorkoutForm = ({ handleWorkouts }) => {
     } else {
       setFormValues({
         ...formValues,
-        id: uuid(),
+        id: workoutToEdit.id ? workoutToEdit.id : uuid(),
         [name]: event.target.type === "checkbox" ? event.target.checked : value
       });
     }
@@ -39,15 +65,13 @@ const WorkoutForm = ({ handleWorkouts }) => {
   //handle submit
   const handleSubmit = event => {
     event.preventDefault();
-    setFormValues({
-      ...formValues,
-      id: uuid(),
-      workoutFocus: "",
-      core: false,
-      exercises: [{ name: "", repsOrTime: "", sets: 1 }],
-      notes: ""
-    });
-    handleWorkouts(formValues);
+    if (workoutToEdit.id) {
+      resetForm(event);
+      submitEdit(formValues);
+    } else {
+      resetForm(event);
+      handleWorkouts(formValues);
+    }
   };
   //add exercise
   const addExercise = () => {
@@ -55,7 +79,7 @@ const WorkoutForm = ({ handleWorkouts }) => {
       ...formValues,
       exercises: [
         ...formValues.exercises,
-        { name: "", repsOrTime: "", sets: 1 }
+        { name: "", repsOrTime: "", sets: "1" }
       ]
     });
   };
@@ -68,12 +92,17 @@ const WorkoutForm = ({ handleWorkouts }) => {
             type="text"
             name="workoutFocus"
             onChange={handleChange}
-            value={formValues.workoutFocus}
+            value={formValues.workoutFocus || ""}
           />
         </label>
         <label htmlFor="core">
           Core?
-          <input type="checkbox" name="core" onChange={handleChange} />
+          <input
+            type="checkbox"
+            value={workoutToEdit.core === true ? "checked" : "unchecked"}
+            name="core"
+            onChange={handleChange}
+          />
         </label>
         <ExerciseInput
           exercises={formValues.exercises}
@@ -87,7 +116,7 @@ const WorkoutForm = ({ handleWorkouts }) => {
           <input
             type="textarea"
             name="notes"
-            value={formValues.notes}
+            value={formValues.notes || ""}
             onChange={handleChange}
           />
         </label>
