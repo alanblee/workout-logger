@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
+import ExerciseInput from "./exercise-input/exercise-input";
 import "./workout-form.scss";
 
 const WorkoutForm = () => {
@@ -58,37 +59,7 @@ const WorkoutForm = () => {
             value={formValues.workoutFocus}
           />
         </label>
-        {formValues.exercises.map((val, indx) => {
-          let exerciseId = `exercise-${indx}`;
-          let durationId = `repsOrTime-${indx}`;
-          return (
-            <div key={indx}>
-              <label htmlFor={exerciseId}>
-                Exercise Name
-                <input
-                  type="text"
-                  name={exerciseId}
-                  data-id={indx}
-                  value={formValues.exercises[indx].name}
-                  className="name"
-                  onChange={handleChange}
-                />
-              </label>
-
-              <label htmlFor={durationId}>
-                Duration
-                <input
-                  type="text"
-                  name={durationId}
-                  data-id={indx}
-                  value={formValues.exercises[indx].repsOrTime}
-                  className="repsOrTime"
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-          );
-        })}
+        <ExerciseInput exercises={formValues.exercises} handleChange={handleChange}/>
         <div>
           <button onClick={addExercise}>+ exercise</button>
         </div>
