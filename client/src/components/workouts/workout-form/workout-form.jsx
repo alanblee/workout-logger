@@ -5,7 +5,7 @@ import "./workout-form.scss";
 const WorkoutForm = () => {
   //set form states
   const [formValues, setFormValues] = useState({
-    date: Date.now(),
+    date: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
     id: "",
     workoutFocus: "",
     core: "",
@@ -33,6 +33,10 @@ const WorkoutForm = () => {
   //handle submit
   const handleSubmit = event => {
     event.preventDefault();
+    setFormValues({
+      ...formValues,
+      id: uuid()
+    });
     console.log(formValues);
   };
   //add exercise
@@ -88,6 +92,15 @@ const WorkoutForm = () => {
         <div>
           <button onClick={addExercise}>+ exercise</button>
         </div>
+        <label htmlFor="core">
+          Core Program
+          <input
+            type="text"
+            name="core"
+            value={formValues.core}
+            onChange={handleChange}
+          />
+        </label>
         <input type="submit" value="submit" />
       </form>
     </div>
