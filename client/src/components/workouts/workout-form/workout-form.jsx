@@ -3,21 +3,25 @@ import { v4 as uuid } from "uuid";
 import ExerciseInput from "./exercise-input/exercise-input";
 import "./workout-form.scss";
 
-const WorkoutForm = () => {
+const WorkoutForm = ({ handleWorkouts }) => {
   //set form states
   const [formValues, setFormValues] = useState({
-    date: new Date().toJSON().slice(0,10).replace(/-/g,'/'),
-    id: "",
+    date: new Date()
+      .toJSON()
+      .slice(0, 10)
+      .replace(/-/g, "/"),
     workoutFocus: "",
-    core: "",
-    exercises: [{ name: "", repsOrTime: "" }]
+    id: uuid(),
+    core: false,
+    exercises: [{ name: "", repsOrTime: "", sets: 1 }],
+    notes: ""
   });
 
   //handle change
   const handleChange = event => {
     const { className, value, name, dataset } = event.target;
     //check if event classname matches dynamic inputs
-    if (["name", "repsOrTime"].includes(className)) {
+    if (["name", "repsOrTime", "sets"].includes(className)) {
       //make copy of exercise array
       let exercises = [...formValues.exercises];
       //target specific input with dataset.id(set to index) and give it the uses input value
@@ -27,7 +31,8 @@ const WorkoutForm = () => {
     } else {
       setFormValues({
         ...formValues,
-        [name]: value
+        id: uuid(),
+        [name]: event.target.type === "checkbox" ? event.target.checked : value
       });
     }
   };
@@ -36,21 +41,28 @@ const WorkoutForm = () => {
     event.preventDefault();
     setFormValues({
       ...formValues,
-      id: uuid()
+      id: uuid(),
+      workoutFocus: "",
+      core: false,
+      exercises: [{ name: "", repsOrTime: "", sets: 1 }],
+      notes: ""
     });
-    console.log(formValues);
+    handleWorkouts(formValues);
   };
   //add exercise
-  const addExercise = event => {
+  const addExercise = () => {
     setFormValues({
       ...formValues,
-      exercises: [...formValues.exercises, { name: "", repsOrTime: "" }]
+      exercises: [
+        ...formValues.exercises,
+        { name: "", repsOrTime: "", sets: 1 }
+      ]
     });
   };
   return (
     <div className="form-wrapper">
       <form action="" className="form" onSubmit={handleSubmit}>
-        What body part
+        What did you focus on today?
         <label htmlFor="workoutFocus">
           <input
             type="text"
@@ -59,16 +71,23 @@ const WorkoutForm = () => {
             value={formValues.workoutFocus}
           />
         </label>
-        <ExerciseInput exercises={formValues.exercises} handleChange={handleChange}/>
-        <div>
-          <button onClick={addExercise}>+ exercise</button>
-        </div>
         <label htmlFor="core">
-          Core Program
+          Core?
+          <input type="checkbox" name="core" onChange={handleChange} />
+        </label>
+        <ExerciseInput
+          exercises={formValues.exercises}
+          handleChange={handleChange}
+        />
+        <div>
+          <span onClick={addExercise}>+ exercise</span>
+        </div>
+        <label htmlFor="notes">
+          Workout Notes
           <input
-            type="text"
-            name="core"
-            value={formValues.core}
+            type="textarea"
+            name="notes"
+            value={formValues.notes}
             onChange={handleChange}
           />
         </label>
