@@ -28,6 +28,13 @@ const WorkoutPage = () => {
   const handleFormSubmit = newWorkout => {
     setWorkouts([...workouts, newWorkout]);
   };
+  const removeWorkout = id => {
+    setWorkouts([
+      ...workouts.filter(workout => {
+        return workout.id !== id;
+      })
+    ]);
+  };
   return (
     <div>
       <WorkoutForm
@@ -42,6 +49,7 @@ const WorkoutPage = () => {
             <h3>{workout.workoutFocus}</h3>
             <p>{workout.notes}</p>
             <button onClick={() => handleEdit(workout)}>edit</button>
+            <button onClick={() => removeWorkout(workout.id)}>Delete</button>
           </div>
         );
       })}
