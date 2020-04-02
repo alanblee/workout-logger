@@ -12,13 +12,33 @@ const WorkoutForm = () => {
     exercises: [{ name: "", repsOrTime: "" }]
   });
 
+  //handle change
+  const handleChange = event => {
+    const { className, value, name, dataset } = event.target;
+    //check if event classname matches dynamic inputs
+    if (["name", "repsOrTime"].includes(className)) {
+      //make copy of exercise array
+      let exercises = [...formValues.exercises];
+      //target specific input with dataset.id(set to index) and give it the uses input value
+      exercises[dataset.id][className] = value;
+      //set the state
+      setFormValues({ ...formValues, exercises });
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value
+      });
+    }
+  };
   //handle submit
   const handleSubmit = event => {
     event.preventDefault();
+    console.log(formValues);
   };
   //add exercise
   const addExercise = event => {
     setFormValues({
+      ...formValues,
       exercises: [...formValues.exercises, { name: "", repsOrTime: "" }]
     });
   };
@@ -27,7 +47,12 @@ const WorkoutForm = () => {
       <form action="" className="form" onSubmit={handleSubmit}>
         What body part
         <label htmlFor="workoutFocus">
-          <input type="text" name="workoutFocus" />
+          <input
+            type="text"
+            name="workoutFocus"
+            onChange={handleChange}
+            value={formValues.workoutFocus}
+          />
         </label>
         {formValues.exercises.map((val, indx) => {
           let exerciseId = `exercise-${indx}`;
@@ -42,6 +67,7 @@ const WorkoutForm = () => {
                   data-id={indx}
                   value={formValues.exercises[indx].name}
                   className="name"
+                  onChange={handleChange}
                 />
               </label>
 
@@ -53,6 +79,7 @@ const WorkoutForm = () => {
                   data-id={indx}
                   value={formValues.exercises[indx].repsOrTime}
                   className="repsOrTime"
+                  onChange={handleChange}
                 />
               </label>
             </div>
@@ -61,7 +88,7 @@ const WorkoutForm = () => {
         <div>
           <button onClick={addExercise}>+ exercise</button>
         </div>
-        <label htmlFor="excercises"></label>
+        <input type="submit" value="submit" />
       </form>
     </div>
   );
