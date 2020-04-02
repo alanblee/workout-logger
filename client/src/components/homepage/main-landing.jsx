@@ -1,13 +1,9 @@
 import React from "react";
 
-import './main-landing.scss';
+import "./main-landing.scss";
 
 const MainLanding = () => {
-  return (
-    <div>
-      landing page  
-    </div>
-  )
-}
+  return <div>landing page</div>;
+};
 
-export default MainLanding
+export default MainLanding;
