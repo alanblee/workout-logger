@@ -66,11 +66,11 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (workoutToEdit.id) {
-      resetForm(event);
       submitEdit(formValues);
-    } else {
       resetForm(event);
+    } else {
       handleWorkouts(formValues);
+      resetForm(event);
     }
   };
   //add exercise
@@ -92,7 +92,7 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
             type="text"
             name="workoutFocus"
             onChange={handleChange}
-            value={formValues.workoutFocus || ""}
+            value={formValues.workoutFocus}
           />
         </label>
         <label htmlFor="core">
@@ -116,7 +116,7 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
           <input
             type="textarea"
             name="notes"
-            value={formValues.notes || ""}
+            value={formValues.notes}
             onChange={handleChange}
           />
         </label>
