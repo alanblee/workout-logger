@@ -66,11 +66,11 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
   const handleSubmit = event => {
     event.preventDefault();
     if (workoutToEdit.id) {
-      resetForm(event);
       submitEdit(formValues);
-    } else {
       resetForm(event);
+    } else {
       handleWorkouts(formValues);
+      resetForm(event);
     }
   };
   //add exercise
