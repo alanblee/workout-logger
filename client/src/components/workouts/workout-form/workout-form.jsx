@@ -3,12 +3,7 @@ import { v4 as uuid } from "uuid";
 import ExerciseInput from "./exercise-input/exercise-input";
 import "./workout-form.scss";
 
-const WorkoutForm = ({
-  handleWorkouts,
-  workoutToEdit,
-  submitEdit,
-  saveLocal
-}) => {
+const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
   //set form states
   const [formValues, setFormValues] = useState({
     date: new Date()

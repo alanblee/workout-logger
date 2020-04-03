@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import WorkoutForm from "./workout-form/workout-form";
+
 import "./main-workout-page.scss";
 
 const WorkoutPage = ({ getWorkout }) => {
   //setState for all workouts
   const [workouts, setWorkouts] = useState([]);
   const [editWorkout, setEditWorkout] = useState([]);
-  //initial load of workouts
-  //listen to when workouts change
-  useEffect(() => {
-    setWorkouts(workouts);
-  });
 
+  //initial load of workouts
   useEffect(() => {
     loadWorkouts();
     setWorkouts(loadWorkouts());
@@ -58,13 +54,14 @@ const WorkoutPage = ({ getWorkout }) => {
       })
     ]);
   };
+  //useHistory to go to new info route
+  const moreInfo = id => {};
   return (
     <div onClick={saveWorkouts}>
       <WorkoutForm
         handleWorkouts={handleFormSubmit}
         workoutToEdit={editWorkout}
         submitEdit={handleEditWorkout}
-        saveLocal={saveWorkouts}
       />
       {workouts.map(workout => {
         return (
@@ -75,13 +72,26 @@ const WorkoutPage = ({ getWorkout }) => {
               getWorkout(workout);
             }}
           >
-            <Link to={`/workouts/${workout.id}`}>
-              <h3>{workout.date}</h3>
-            </Link>
+            <h3>{workout.date}</h3>
             <h3>{workout.workoutFocus}</h3>
             <p>{workout.notes}</p>
             <button onClick={() => handleEdit(workout)}>edit</button>
             <button onClick={() => removeWorkout(workout.id)}>Delete</button>
+            <button onClick={() => moreInfo(workout.id)}>More info</button>
+
+            <div className="more-info">
+              <p>Core? {workout.core === true ? "Yes" : "No"}</p>
+              <ul>
+                {workout.exercises.map((exercise, indx) => {
+                  return (
+                    <li key={indx}>
+                      {exercise.name} - {exercise.repsOrTime} - {exercise.sets}{" "}
+                      sets
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         );
       })}
