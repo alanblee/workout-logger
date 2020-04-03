@@ -11,12 +11,18 @@ const WorkoutPage = ({ getWorkout }) => {
   //listen to when workouts change
   useEffect(() => {
     setWorkouts(workouts);
-  }, [workouts]);
-  
+  });
+
   useEffect(() => {
     loadWorkouts();
-    setWorkouts(loadWorkouts())
-  },[]);
+    setWorkouts(loadWorkouts());
+  }, []);
+
+  // handle form submit
+  const handleFormSubmit = newWorkout => {
+    setWorkouts([...workouts, newWorkout]);
+  };
+
   //handle edit workout
   const handleEdit = workout => {
     setEditWorkout(workout);
@@ -29,10 +35,21 @@ const WorkoutPage = ({ getWorkout }) => {
     ]);
     setEditWorkout([]);
   };
-  //fn to handle form submit
-  const handleFormSubmit = newWorkout => {
-    setWorkouts([...workouts, newWorkout]);
+
+  //save workouts
+  const saveWorkouts = () => {
+    localStorage.setItem("workout", [JSON.stringify(workouts)]);
   };
+  //load workouts
+  const loadWorkouts = () => {
+    let data = localStorage.getItem("workout");
+    if (data) {
+      return JSON.parse(data);
+    } else {
+      return [];
+    }
+  };
+
   //remove workout
   const removeWorkout = id => {
     setWorkouts([
@@ -41,27 +58,14 @@ const WorkoutPage = ({ getWorkout }) => {
       })
     ]);
   };
-  //save workouts
-  const saveWorkouts = () => {
-    localStorage.setItem("workout", [JSON.stringify(workouts)]);
-  };
-  const loadWorkouts = () => {
-    let data = localStorage.getItem("workout");
-    // setWorkouts(JSON.parse(data));
-    if(data) {
-      return JSON.parse(data);
-    }else {
-      return [];
-    }
-  };
   return (
-    <div>
+    <div onClick={saveWorkouts}>
       <WorkoutForm
         handleWorkouts={handleFormSubmit}
         workoutToEdit={editWorkout}
         submitEdit={handleEditWorkout}
+        saveLocal={saveWorkouts}
       />
-      <h1 onClick={saveWorkouts}>save workout</h1>
       {workouts.map(workout => {
         return (
           <div

@@ -3,7 +3,12 @@ import { v4 as uuid } from "uuid";
 import ExerciseInput from "./exercise-input/exercise-input";
 import "./workout-form.scss";
 
-const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
+const WorkoutForm = ({
+  handleWorkouts,
+  workoutToEdit,
+  submitEdit,
+  saveLocal
+}) => {
   //set form states
   const [formValues, setFormValues] = useState({
     date: new Date()
@@ -92,7 +97,7 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
             type="text"
             name="workoutFocus"
             onChange={handleChange}
-            value={formValues.workoutFocus || ""}
+            value={formValues.workoutFocus}
           />
         </label>
         <label htmlFor="core">
@@ -116,7 +121,7 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
           <input
             type="textarea"
             name="notes"
-            value={formValues.notes || ""}
+            value={formValues.notes}
             onChange={handleChange}
           />
         </label>
