@@ -1,5 +1,7 @@
-.container {
+
+.main-container {
   margin: 0 auto;
   padding: 1%;
-  border: 1px solid black;
+  border: 1px solid #ff0058;
+  
 }

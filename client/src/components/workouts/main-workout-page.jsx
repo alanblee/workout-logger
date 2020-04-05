@@ -79,19 +79,7 @@ const WorkoutPage = ({ getWorkout }) => {
             <button onClick={() => removeWorkout(workout.id)}>Delete</button>
             <button onClick={() => moreInfo(workout.id)}>More info</button>
 
-            <div className="more-info">
-              <p>Core? {workout.core === true ? "Yes" : "No"}</p>
-              <ul>
-                {workout.exercises.map((exercise, indx) => {
-                  return (
-                    <li key={indx}>
-                      {exercise.name} - {exercise.repsOrTime} - {exercise.sets}{" "}
-                      sets
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+           
           </div>
         );
       })}

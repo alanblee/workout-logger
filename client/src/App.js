@@ -14,7 +14,7 @@ function App() {
     setWorkout(workout);
   };
   return (
-    <div className="container">
+    <div className="main-container">
       <Navbar />
       <Switch>
         <Route  path="/workouts">
