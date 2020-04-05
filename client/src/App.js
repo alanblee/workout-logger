@@ -5,7 +5,7 @@ import Navbar from "./components/nav/navbar";
 import WorkoutPage from "./components/workouts/main-workout-page";
 import MainLanding from "./components/homepage/main-landing";
 
-import "./App.css";
+import "./App.scss";
 
 function App() {
   const [singleWorkout, setWorkout] = useState({});

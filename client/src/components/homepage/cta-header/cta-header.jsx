@@ -16,9 +16,9 @@ const SectionCta = () => {
           </p>
         </div>
         <div className="cta-btn">
-          <button className="btn">
-            <Link to="/sign-up">Try now</Link>
-          </button>
+          <Link to="/sign-up" className="btn">
+            Try now
+          </Link>
         </div>
       </div>
     </section>
