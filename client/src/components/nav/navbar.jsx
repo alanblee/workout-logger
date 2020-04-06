@@ -5,16 +5,18 @@ import "./navbar.scss";
 
 const Navbar = () => {
   return (
-    <div className="nav-container">
-      <h1>
-        <Link to="/">Ledger</Link>
-      </h1>
-      <nav className="nav">
-        <Link to="/sign-in">Sign In</Link>
-        <Link to="/sign-up">Sign Up</Link>
-        <Link to="/workouts">Workouts</Link>
-      </nav>
-    </div>
+    <header>
+      <div className="nav-container">
+        <h1>
+          <Link to="/">Ledger</Link>
+        </h1>
+        <nav className="nav">
+          <Link to="/sign-in">Sign In</Link>
+          <Link to="/sign-up">Sign Up</Link>
+          <Link to="/workouts">Workouts</Link>
+        </nav>
+      </div>
+    </header>
   );
 };
 

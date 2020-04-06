@@ -1,0 +1,70 @@
+.cta {
+  width: 100%;
+  height: 80vh;
+  background: linear-gradient(
+      135deg,
+      rgba(253, 68, 133, 0.73) 0%,
+      rgba(255, 117, 165, 0.67) 100%
+    ),
+    url("../../../img/header-img.jpg") no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4.7rem;
+    background: url("../../../img/wave-small.png") center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+  .main-message {
+    width: 100%;
+    max-width: 50rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    transform: translateY(20%);
+
+    h3,
+    p {
+      font-size: 1.6rem;
+    }
+    h1 {
+      font-family: "Aldrich", sans-serif;
+      font-size: 4rem;
+      margin: 1rem 0;
+    }
+    p {
+      text-transform: lowercase;
+    }
+  }
+  .btn {
+    background-color: rgba(79, 0, 250, 0.79);
+    border-radius: 2rem;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 650ms;
+
+    &:hover {
+      background-color: #3700ad;
+    }
+  }
+}
