@@ -57,16 +57,21 @@ const WorkoutPage = ({ getWorkout }) => {
   //useHistory to go to new info route
   const moreInfo = (id) => {};
   return (
-    <div onClick={saveWorkouts}>
+    <div onClick={saveWorkouts} className="workout-container">
       <WorkoutForm
         handleWorkouts={handleFormSubmit}
         workoutToEdit={editWorkout}
         submitEdit={handleEditWorkout}
       />
+      <div className="workout-title">
+        <h1>Workout Logs</h1>
+
+      </div>
+      <div className="entry-container">
       {workouts.map((workout) => {
         return (
           <div
-            className="workout-entries"
+          className="entries"
             key={workout.id}
             onClick={() => {
               getWorkout(workout);
@@ -81,6 +86,7 @@ const WorkoutPage = ({ getWorkout }) => {
           </div>
         );
       })}
+      </div>
     </div>
   );
 };

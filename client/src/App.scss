@@ -50,6 +50,14 @@
       -o-background-size: cover;
       background-size: cover;
     }
+    .center-content::before {
+      height: 9.4rem;
+      background: url("./img/wave-medium.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
   }
 
   @media screen and (min-width: 700px) {
@@ -125,6 +133,14 @@
     .testimonials::before {
       height: 22.7rem;
       background: url("./img/wave-large-reversed.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    .center-content::before {
+      height: 22.7rem;
+      background: url("./img/wave-large.png");
       -webkit-background-size: cover;
       -moz-background-size: cover;
       -o-background-size: cover;

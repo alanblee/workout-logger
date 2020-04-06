@@ -118,7 +118,7 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
               onChange={handleChange}
             />
           </label>
-          <input type="submit" value="submit" />
+          <input className="submit-btn" type="submit" value="submit" />
         </form>
       </div>
     </div>
