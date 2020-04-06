@@ -6,15 +6,12 @@ import "./workout-form.scss";
 const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
   //set form states
   const [formValues, setFormValues] = useState({
-    date: new Date()
-      .toJSON()
-      .slice(0, 10)
-      .replace(/-/g, "/"),
+    date: new Date().toJSON().slice(0, 10).replace(/-/g, "/"),
     workoutFocus: "",
     id: uuid(),
     core: null,
     exercises: [{ name: "", repsOrTime: "", sets: "1" }],
-    notes: ""
+    notes: "",
   });
 
   useEffect(() => {
@@ -28,23 +25,23 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
         workoutFocus,
         core,
         exercises,
-        notes
+        notes,
       });
     }
   }, [workoutToEdit]);
   //reset form
-  const resetForm = event => {
+  const resetForm = (event) => {
     setFormValues({
       ...formValues,
       id: uuid(),
       workoutFocus: "",
       core: null,
       exercises: [{ name: "", repsOrTime: "", sets: "1" }],
-      notes: ""
+      notes: "",
     });
   };
   //handle change
-  const handleChange = event => {
+  const handleChange = (event) => {
     const { className, value, name, dataset } = event.target;
     //check if event classname matches dynamic inputs
     if (["name", "repsOrTime", "sets"].includes(className)) {
@@ -58,12 +55,12 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
       setFormValues({
         ...formValues,
         id: workoutToEdit.id ? workoutToEdit.id : uuid(),
-        [name]: event.target.type === "checkbox" ? event.target.checked : value
+        [name]: event.target.type === "checkbox" ? event.target.checked : value,
       });
     }
   };
   //handle submit
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     if (workoutToEdit.id) {
       submitEdit(formValues);
@@ -79,49 +76,51 @@ const WorkoutForm = ({ handleWorkouts, workoutToEdit, submitEdit }) => {
       ...formValues,
       exercises: [
         ...formValues.exercises,
-        { name: "", repsOrTime: "", sets: "1" }
-      ]
+        { name: "", repsOrTime: "", sets: "1" },
+      ],
     });
   };
   return (
-    <div className="form-wrapper">
-      <form action="" className="form" onSubmit={handleSubmit}>
-        What did you focus on today?
-        <label htmlFor="workoutFocus">
-          <input
-            type="text"
-            name="workoutFocus"
-            onChange={handleChange}
-            value={formValues.workoutFocus}
+    <div className="center-content">
+      <div className="form-wrapper">
+        <form action="" className="form" onSubmit={handleSubmit}>
+          <label htmlFor="workoutFocus">
+            What did you focus on today?
+            <input
+              type="text"
+              name="workoutFocus"
+              onChange={handleChange}
+              value={formValues.workoutFocus}
+            />
+          </label>
+          <ExerciseInput
+            exercises={formValues.exercises}
+            handleChange={handleChange}
           />
-        </label>
-        <label htmlFor="core">
-          Core?
-          <input
-            type="checkbox"
-            value={workoutToEdit.core === true ? "checked" : "unchecked"}
-            name="core"
-            onChange={handleChange}
-          />
-        </label>
-        <ExerciseInput
-          exercises={formValues.exercises}
-          handleChange={handleChange}
-        />
-        <div>
-          <span onClick={addExercise}>+ exercise</span>
-        </div>
-        <label htmlFor="notes">
-          Workout Notes
-          <input
-            type="textarea"
-            name="notes"
-            value={formValues.notes}
-            onChange={handleChange}
-          />
-        </label>
-        <input type="submit" value="submit" />
-      </form>
+          <div>
+            <span onClick={addExercise}>+ exercise</span>
+          </div>
+          <label htmlFor="core">
+            Core?
+            <input
+              type="checkbox"
+              value={workoutToEdit.core === true ? "checked" : "unchecked"}
+              name="core"
+              onChange={handleChange}
+            />
+          </label>
+          <label htmlFor="notes">
+            Workout Notes
+            <textarea
+              rows="5"
+              name="notes"
+              value={formValues.notes}
+              onChange={handleChange}
+            />
+          </label>
+          <input className="submit-btn" type="submit" value="submit" />
+        </form>
+      </div>
     </div>
   );
 };
