@@ -14,11 +14,11 @@ const SectionCta = () => {
             shabby chic twee vegan sartorial YOLO pug. Franzen knausgaard
             waistcoat hexagon sartorial tacos cliche actually chia truffaut.
           </p>
-        </div>
-        <div className="cta-btn">
-          <Link to="/sign-up" className="btn">
-            Try now
-          </Link>
+          <div className="cta-btn">
+            <Link to="/sign-up" className="btn">
+              Try now
+            </Link>
+          </div>
         </div>
       </div>
     </section>
