@@ -51,20 +51,5 @@
       text-transform: lowercase;
     }
   }
-  .btn {
-    background-color: rgba(79, 0, 250, 0.79);
-    border-radius: 2rem;
-    margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    color: #fafafa;
-    text-transform: uppercase;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    transition: background-color 650ms;
-
-    &:hover {
-      background-color: #3700ad;
-    }
-  }
+  
 }

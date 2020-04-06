@@ -1,11 +1,33 @@
 .main-container {
   margin: 0 auto;
   padding: 1%;
-  
+
   .container {
     width: 100%;
     max-width: 98rem;
     margin: 0 auto;
     padding: 0 1.5rem;
+  }
+  .title-heading {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .btn {
+    background-color: rgba(79, 0, 250, 0.79);
+    border-radius: 2rem;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    color: #fafafa;
+    text-transform: uppercase;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 650ms;
+
+    &:hover {
+      background-color: #3700ad;
+    }
   }
 }
