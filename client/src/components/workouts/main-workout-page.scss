@@ -1,3 +1,9 @@
+$gradient-color: linear-gradient(
+  to right bottom,
+  rgba(253, 68, 133, 0.73) 0%,
+  rgba(169, 169, 169, 0.67) 100%
+);
+
 .workout-container {
   width: 100%;
   background: white;
@@ -8,17 +14,136 @@
       font-family: "Aldrich", sans-serif;
     }
   }
-  .entry-container {
+  .card-container {
     display: flex;
-    justify-content: space-evenly;
     flex-wrap: wrap;
-    padding: 2%;
-    margin-top: 5%;
-    .entries {
-      margin: 1% 2%;
-      padding: 3%;
-      width: 30%;
-      border: 1px solid black;
+    width: 100%;
+    justify-content: space-evenly;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      box-shadow: 2px 0.8rem 1rem rgba(0, 0, 0, 0.5);
+      width: 45%;
+      margin: 5% 1%;
+
+      &:hover .background-img {
+        transform: scale(1.5);
+      }
+      .img-data {
+        height: 25rem;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        .background-img {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          background: url("../../img/svg/activity_tracker.svg") center no-repeat;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+          z-index: -1;
+          transition: transform 5s;
+        }
+        .manage-btns {
+          width: 100%;
+          height: 100%;
+          background: $gradient-color;
+          padding: 1rem;
+          position: absolute;
+          top: 0;
+          left: 0;
+          i {
+            font-size: 2.4rem;
+            color: #fff;
+            cursor: pointer;
+            margin: 1%;
+          }
+          .edit {
+            display: inline-block;
+            margin-bottom: 5%;
+            transition: all 0.5s;
+            &:hover {
+              color: rgba(230, 24, 249, 0.67);
+            }
+          }
+          .delete {
+            display: block;
+            transition: all 0.5s;
+            &:hover {
+              color: red;
+            }
+          }
+        }
+      }
+      //workout data
+      .workout-data {
+        background-color: #fff;
+        padding: 2rem 3rem;
+        position: relative;
+
+        .title {
+          font-size: 3rem;
+          line-height: 1;
+        }
+        .subtitle {
+          font-size: 1.2rem;
+          letter-spacing: 0.3rem;
+          color: #a2a2a2;
+          margin: 1rem 0 1.5rem 0;
+        }
+        .summary {
+          position: relative;
+
+          &::first-letter {
+            margin-left: 1rem;
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: $gradient-color;
+            border-radius: 2rem;
+            width: 0.5rem;
+            height: 2.5rem;
+          }
+        }
+      }
+      //card btn
+      .cta-read-more {
+        text-align: right;
+        font-weight: bold;
+        margin-top: 1rem;
+
+        & p {
+          background: $gradient-color;
+          -webkit-background-clip: text;
+          display: inline;
+          color: transparent;
+          position: relative;
+        }
+        & p::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -0.5rem;
+          width: 100%;
+          height: 0.3rem;
+          background: $gradient-color;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.5s;
+        }
+        & p:hover::before {
+          transform: scaleX(1);
+        }
+      }
     }
   }
 }

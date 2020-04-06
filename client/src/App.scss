@@ -60,6 +60,41 @@
     }
   }
 
+  @media screen and (min-width: 600px) {
+    .card-container {
+      .card {
+        flex-direction: row;
+        max-width: 75rem;
+
+        .img-data {
+          flex-basis: 40%;
+          height: unset;
+        }
+        .manage-btns {
+          transform: translateX(-100%);
+          transition: transform 0.5s;
+        }
+        .workout-data {
+          flex-basis: 60%;
+
+          &::before {
+            content: "";
+            width: 2.6rem;
+            height: 100%;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            left: -1.5rem;
+            z-index: 10;
+            transform: skewX(-5deg);
+          }
+        }
+        &:hover .manage-btns {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
   @media screen and (min-width: 700px) {
     header {
       height: 8rem;

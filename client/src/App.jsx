@@ -1,4 +1,4 @@
-import React, { useState, } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Navbar from "./components/nav/navbar";
@@ -8,19 +8,14 @@ import MainLanding from "./components/homepage/main-landing";
 import "./App.scss";
 
 function App() {
-  const [singleWorkout, setWorkout] = useState({});
-  //get single workout
-  const handleSingleWorkout = workout => {
-    setWorkout(workout);
-  };
   return (
     <div className="main-container">
       <Navbar />
       <Switch>
-        <Route  path="/workouts">
-          <WorkoutPage getWorkout={handleSingleWorkout} />
+        <Route path="/workouts">
+          <WorkoutPage />
         </Route>
-        <Route  path="/">
+        <Route path="/">
           <MainLanding />
         </Route>
       </Switch>

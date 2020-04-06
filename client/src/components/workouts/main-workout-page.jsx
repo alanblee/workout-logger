@@ -65,27 +65,40 @@ const WorkoutPage = ({ getWorkout }) => {
       />
       <div className="workout-title">
         <h1>Workout Logs</h1>
-
       </div>
-      <div className="entry-container">
-      {workouts.map((workout) => {
-        return (
-          <div
-          className="entries"
-            key={workout.id}
-            onClick={() => {
-              getWorkout(workout);
-            }}
-          >
-            <h3>{workout.date}</h3>
-            <h3>{workout.workoutFocus}</h3>
-            <p>{workout.notes}</p>
-            <button onClick={() => handleEdit(workout)}>edit</button>
-            <button onClick={() => removeWorkout(workout.id)}>Delete</button>
-            <button onClick={() => moreInfo(workout.id)}>More info</button>
-          </div>
-        );
-      })}
+      <div className="card-container">
+        {workouts.map((workout) => {
+          return (
+            <div className="card" key={workout.id}>
+              <div
+                className="img-data"
+                onClick={() => {
+                  saveWorkouts();
+                }}
+              >
+                <div className="background-img"></div>
+                <div className="manage-btns">
+                  <i
+                    onClick={() => handleEdit(workout)}
+                    className="fas fa-edit edit"
+                  ></i>
+                  <i
+                    onClick={() => removeWorkout(workout.id)}
+                    className="fas fa-trash-alt delete"
+                  ></i>
+                </div>
+              </div>
+              <div className="workout-data">
+                <h1 className="title">{workout.workoutFocus}</h1>
+                <h2 className="subtitle">{workout.date}</h2>
+                <p className="summary">{workout.notes}</p>
+                <div className="cta-read-more">
+                  <p onClick={() => moreInfo(workout.id)}>More Info &rarr;</p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
