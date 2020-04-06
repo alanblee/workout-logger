@@ -1,6 +1,6 @@
 .main-container {
   margin: 0 auto;
-  padding: 1%;
+  
 
   .container {
     width: 100%;
@@ -28,6 +28,70 @@
 
     &:hover {
       background-color: #3700ad;
+    }
+  }
+
+  @media screen and (min-width: 350px) {
+    .main-message {
+      transform: translateY(40%);
+    }
+  }
+
+  @media screen and (min-width: 470px) {
+    .cta::before {
+      height: 9.4rem;
+      background: url("./img/wave-medium.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    .testimonials::before {
+      height: 9.4rem;
+      background: url("./img/wave-medium-reversed.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  }
+
+  @media screen and (min-width: 700px) {
+    .cta {
+      height: 60vh;
+    }
+    .main-message {
+      transform: translateY(60%);
+    }
+    .title-heading {
+      h1 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .cta::before {
+      height: 22.7rem;
+      background: url("./img/wave-large.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    .testimonials::before {
+      height: 22.7rem;
+      background: url("./img/wave-large-reversed.png");
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .cta {
+      height: 75vh;
     }
   }
 }
