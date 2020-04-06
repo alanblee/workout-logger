@@ -15,19 +15,19 @@ const WorkoutPage = ({ getWorkout }) => {
   }, []);
 
   // handle form submit
-  const handleFormSubmit = newWorkout => {
+  const handleFormSubmit = (newWorkout) => {
     setWorkouts([...workouts, newWorkout]);
   };
 
   //handle edit workout
-  const handleEdit = workout => {
+  const handleEdit = (workout) => {
     setEditWorkout(workout);
   };
-  const handleEditWorkout = editedWorkout => {
+  const handleEditWorkout = (editedWorkout) => {
     setWorkouts([
-      ...workouts.map(workout => {
+      ...workouts.map((workout) => {
         return workout.id === editedWorkout.id ? editedWorkout : workout;
-      })
+      }),
     ]);
     setEditWorkout([]);
   };
@@ -47,15 +47,15 @@ const WorkoutPage = ({ getWorkout }) => {
   };
 
   //remove workout
-  const removeWorkout = id => {
+  const removeWorkout = (id) => {
     setWorkouts([
-      ...workouts.filter(workout => {
+      ...workouts.filter((workout) => {
         return workout.id !== id;
-      })
+      }),
     ]);
   };
   //useHistory to go to new info route
-  const moreInfo = id => {};
+  const moreInfo = (id) => {};
   return (
     <div onClick={saveWorkouts}>
       <WorkoutForm
@@ -63,11 +63,11 @@ const WorkoutPage = ({ getWorkout }) => {
         workoutToEdit={editWorkout}
         submitEdit={handleEditWorkout}
       />
-      {workouts.map(workout => {
+      {workouts.map((workout) => {
         return (
           <div
+            className="workout-entries"
             key={workout.id}
-            className="workout-entry"
             onClick={() => {
               getWorkout(workout);
             }}
@@ -78,8 +78,6 @@ const WorkoutPage = ({ getWorkout }) => {
             <button onClick={() => handleEdit(workout)}>edit</button>
             <button onClick={() => removeWorkout(workout.id)}>Delete</button>
             <button onClick={() => moreInfo(workout.id)}>More info</button>
-
-           
           </div>
         );
       })}
