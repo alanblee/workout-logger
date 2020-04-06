@@ -11,8 +11,7 @@ const SectionEnd = () => {
           <h1>Fitness journey</h1>
           <p>
             gochujang hoodie tumblr bitters messenger bag 8-bit. Blog salvia
-            wayfarers freegan subway tile disrupt. Vape fixie raw denim
-            pour-over wayfarers.
+            wayfarers freegan subway tile disrupt.
           </p>
         </div>
         <div className="journey-grid">

@@ -12,6 +12,9 @@ const MainLanding = () => {
       <SectionMidContent />
       <SectionTestimonial />
       <SectionEnd />
+      <footer>
+        <p>&copy; 2020 Ledger. All rights reserverd</p>
+      </footer>
     </div>
   );
 };
