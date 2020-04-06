@@ -24,7 +24,7 @@ const SectionMidContent = () => {
     });
   };
   return (
-    <section className="stay-organized">
+    <section className="feature-section">
       <div className="container">
         <div className="title-heading">
           <h3>Log your workouts</h3>
