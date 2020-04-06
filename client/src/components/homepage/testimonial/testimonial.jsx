@@ -11,7 +11,7 @@ const SectionTestimonial = () => {
             <i className="icon ion-quote"></i>
           </div>
           <div className="testimonial-customer">
-            <img src="../../../img/svg/user.svg" alt="user avatar" />
+            <img src={require("../../../img/svg/user.svg")} alt="user avatar" />
             <h1>Max Powers</h1>
           </div>
         </div>
